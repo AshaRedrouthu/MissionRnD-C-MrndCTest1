@@ -41,7 +41,7 @@ int * find_sequences(int *arr, int len){
 		if (arr[j + 1] == (arr[j] + (arr[j] - arr[i]))){
 			output[k++] = i;
 			i++, j++;
-			while (arr[j] + (arr[j] - arr[i])){
+			while (arr[j+1] == arr[j] + (arr[j] - arr[i])){
 				i++; j++;
 			}
 			output[k++] = j;

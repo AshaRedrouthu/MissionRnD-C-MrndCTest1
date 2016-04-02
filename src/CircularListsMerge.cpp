@@ -87,12 +87,10 @@ int merge_circularlists(struct node **head1, struct node **head2){
 		while (temp2->next != *head2){
 			start1->next = temp2;
 			temp2 = temp2->next;
-			count++;
 		}
 	}
 	start1->next = start;
 	*head1 = start;
-	count++;
 	return findLength(*head1);
 
 }
