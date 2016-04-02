@@ -58,26 +58,26 @@ int merge_circularlists(struct node **head1, struct node **head2){
 		start = temp2;
 		temp2 = temp2->next;
 	}
-	count++;
 	start1 = start;
 	while (temp1->next != *head1 && temp2->next != *head2)
 	{
 		if (temp1->data < temp2->data)
 		{
 			start1->next = temp1;
+			start1 = start1->next;
 			temp1 = temp1->next;
-			count++;
 		}
 		else{
 			start1->next = temp2;
+			start1 = start1->next;
 			temp2 = temp2->next;
-			count++;
 		}
 	}
 	if (temp1->next != *head1)
 	{
 		while (temp1->next != *head1){
 			start1->next = temp1;
+			start1 = start1->next;
 			temp1 = temp1->next;
 			count++;
 		}
@@ -86,6 +86,7 @@ int merge_circularlists(struct node **head1, struct node **head2){
 	{
 		while (temp2->next != *head2){
 			start1->next = temp2;
+			start1 = start1->next;
 			temp2 = temp2->next;
 		}
 	}
