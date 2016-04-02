@@ -20,7 +20,7 @@ pointing towards the first node.
 Note : Return -1 for Invalid Inputs like NULL;
 
 Input : head1 and head2 are Addresses of Two Circular Linked Lists heads .
-Output :Return Length of New SLL .Modify the head1 value, such that it now points to 
+Output :Return Length of New SLL .Modify the head1 value, such that it now points to
 Merged Sorted Circular SLL .
 
 Difficulty : Medium
@@ -32,7 +32,62 @@ struct node{
 	int data;
 	struct node *next;
 };
+int search(struct node *head, int key){
+	struct node *temp = head;
+	while (temp->next != head){
+		if (temp->data == key)
+			return 0;
+	}
+	return 1;
+}
 int merge_circularlists(struct node **head1, struct node **head2){
 	//Returns Length of merged Sorted circular SLL and also points *head1 to final SLL .
-	return -1;
+	if (*head1 == NULL || *head2 == NULL)
+		return -1;
+	int count = 0;
+	struct node *temp1 = *head1, *temp2 = *head2, *start = NULL, *start1 = NULL;
+	if (temp1->data < temp2->data)
+	{
+		start = temp1;
+		temp1 = temp1->next;
+	}
+	else{
+		start = temp2;
+		temp2 = temp2->next;
+	}
+	count++;
+	start1 = start;
+	while (temp1->next != *head1 && temp2->next != *head2)
+	{
+		if (temp1->data < temp2->data)
+		{
+			start1->next = temp1;
+			temp1 = temp1->next;
+			count++;
+		}
+		else{
+			start1->next = temp2;
+			temp2 = temp2->next;
+			count++;
+		}
+	}
+	if (temp1->next != *head1)
+	{
+		while (temp1->next != *head1){
+			start1->next = temp1;
+			temp1 = temp1->next;
+			count++;
+		}
+	}
+	if (temp2->next != *head2)
+	{
+		while (temp2->next != *head2){
+			start1->next = temp2;
+			temp2 = temp2->next;
+			count++;
+		}
+	}
+	*head1 = start;
+	return count;
+
 }
